@@ -1,0 +1,433 @@
+/**
+ * Theme:	Flat Blocks
+ * File:	custom-styles.css
+ * 
+ * The stylesheet for the theme's custom block styles
+ *
+ * @package flat-blocks
+ * @since 	1.0
+ */
+
+/*--------------------------------------------------------------
+# Fixed Header. Front-end and Editor.
+--------------------------------------------------------------*/
+
+/* Style the fixed header */
+.wp-block-group.is-style-fixed-header {
+    border: 1px solid var(--wp--custom--border--color);
+    border-width: 0 0 1px;
+    padding: var(--wp--preset--spacing--40) var(--wp--style--root--padding-right, var(--wp--preset--spacing--50)) var(--wp--preset--spacing--40) var(--wp--style--root--padding-left, var(--wp--preset--spacing--50)) !important;
+}
+
+/*--------------------------------------------------------------
+# Fixed Nav Menu. Front-end and Editor.
+--------------------------------------------------------------*/
+/* Style fixed mobile menu */
+.wp-block-navigation.is-style-fixed-menu .wp-block-navigation__responsive-container {
+	min-width: calc(10 * var(--wp--preset--spacing--60));
+	max-width: calc(15 * var(--wp--preset--spacing--60));
+}
+
+.wp-block-navigation.is-style-fixed-menu .wp-block-navigation__responsive-container-open {
+	background: rgba(0, 0, 0, .25);
+	padding: var(--wp--preset--spacing--20);
+	color: white;
+	border: none;
+	border-radius: 0;
+}
+
+/*--------------------------------------------------------------
+# Cover Image
+--------------------------------------------------------------*/
+
+/* Border */
+.wp-block-cover.is-style-cover-border {
+	border: 3px solid var(--wp--custom--border--color);
+	padding: var(--wp--preset--spacing--40);
+}
+
+/*--------------------------------------------------------------
+# Group
+--------------------------------------------------------------*/
+
+/* Group borders */
+.wp-block-group.is-style-rounded-border {
+	border: 1px solid var(--wp--custom--border--color);
+	border-radius: var(--wp--custom--border--radius);
+	/*padding: var(--wp--preset--spacing--40);*/
+	padding-top: var(--wp--preset--spacing--40);
+	padding-bottom: var(--wp--preset--spacing--40);
+}
+.wp-block-group.is-style-rounded-border:not(.has-global-padding) {
+	padding-left: var(--wp--preset--spacing--40);
+	padding-right: var(--wp--preset--spacing--40);	
+}
+
+.wp-block-group.is-style-thick-rounded-border {
+	border: 3px solid var(--wp--custom--border--color);
+	border-radius: var(--wp--custom--border--radius);
+}
+
+/* Group padding */
+.wp-block-group.is-style-no-padding {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.wp-block-group.is-style-no-padding:not(.has-global-padding) {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*--------------------------------------------------------------
+# Columns
+--------------------------------------------------------------*/
+
+/* Columns no Gap */
+.wp-block-columns.is-style-no-gap,
+.wp-block-columns.is-style-no-gap .wp-block-column:not(.has-background),
+.wp-block-columns.is-style-no-gap.has-background:not(.has-global-padding) {
+	gap: 0 !important;
+	padding: 0 !important;
+}
+
+/* Columns thick gap */
+.wp-block-columns.is-style-thick-gap,
+.wp-block-columns.is-style-thick-gap.has-background {
+	gap: var(--wp--preset--spacing--60);
+}
+
+/*--------------------------------------------------------------
+# Individual Column
+--------------------------------------------------------------*/
+/* Column rounded borders */
+.wp-block-column.is-style-rounded-border {
+	border: 1px solid var(--wp--custom--border--color);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--preset--spacing--40);
+}
+
+/* Column padding */
+.wp-block-column.is-style-no-padding {
+	padding: 0;
+}
+
+/*--------------------------------------------------------------
+# Columns and Column on Mobile
+--------------------------------------------------------------*/
+/* Handle when columns collapse on mobile */
+/* Breakpoint of 781 is what is hard-coded in WordPress v6.0+ to collapse columns */
+@media only screen and (max-width: 781px) {
+
+	/* Reduce row (vertical gap) when collapsing centered columns */
+	.wp-block-columns.is-style-center-on-mobile {
+		row-gap: var(--wp--preset--spacing--30);
+	}
+
+	/* Center left and right aligned text */
+	.wp-block-columns.is-style-center-on-mobile .wp-block-column:not(.wp-block-navigation__responsive-container-content) > * {
+		display: flex;
+		justify-content: center;
+		--navigation-layout-justify: center;		
+	}
+
+	/* OVERRIDE columns thick gap so vertical spacing matches up */	
+	.wp-block-columns.is-style-thick-gap,
+	.wp-block-columns.is-style-thick-gap.has-background {
+		gap: var(--wp--preset--spacing--40);
+	}
+	
+}
+
+/*--------------------------------------------------------------
+# Images
+--------------------------------------------------------------*/
+
+/* Image no border */
+.is-style-image-no-border,
+.wp-block-post-featured-image.is-style-image-no-border img {	
+	border: none;
+	border-radius: 0;
+	padding: 0;
+}
+
+/* Image borders */
+.wp-block-image.is-style-image-border img {
+	border: 1px solid var(--wp--custom--border--color);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--custom--border--radius);
+}
+
+.wp-block-image.is-style-image-round-border img {
+	border: 1px solid var(--wp--custom--border--color);
+	border-radius: 50%;
+	padding: var(--wp--custom--border--radius);
+}
+
+/*.wp-block-image.is-style-image-computer-screen img {*/
+.wp-block-image.is-style-image-computer-screen {
+	border: var(--wp--preset--spacing--60) solid var(--wp--preset--color--not-quite-black);
+	border-radius: var(--wp--preset--spacing--40);
+	border-bottom: 3px solid var(--wp--preset--color--not-quite-black);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.wp-block-image.is-style-image-computer-screen figcaption {
+	display: none;
+}
+
+/*.wp-block-image.is-style-image-tablet-phone-screen img {*/
+.wp-block-image.is-style-image-tablet-phone-screen {
+	border: calc(0.66 * var(--wp--preset--spacing--60)) solid var(--wp--preset--color--not-quite-black);
+	border-radius: var(--wp--preset--spacing--40);
+}
+
+.wp-block-image.is-style-image-tablet-phone-screen figcaption {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+# Featured Images (post / page "thumbnails")
+--------------------------------------------------------------*/
+
+/* Featured Image no border */
+.wp-block-post-featured-image.is-style-image-no-border img {
+	padding: 0;
+	border: none;
+}
+
+/*--------------------------------------------------------------
+# Lists
+--------------------------------------------------------------*/
+/* Checkmarks */
+ul.is-style-list-checkmarks,
+ol.is-style-list-checkmarks {
+	list-style: none;
+}
+
+ul.is-style-list-checkmarks > li, 
+ol.is-style-list-checkmarks > li {   
+	position: relative;
+}
+
+/* dashicons-saved */
+ul.is-style-list-checkmarks li:before,
+ol.is-style-list-checkmarks li:before {
+	font-family: dashicons;
+	content: "\f15e"; 
+    position: absolute;
+    left: calc(-8px - 1em);
+    top: .14285714em;
+    text-align: center;
+    transition:color .1s ease-in
+}
+
+.rtl ul.is-style-list-checkmarks li:before,
+.rtl ol.is-style-list-checkmarks li:before {
+	left: 0;
+    right: calc(-8px - 1em);
+}
+
+/* Plain */
+ul.is-style-list-plain,
+ul.is-style-list-plain ul,
+ol.is-style-list-plain ol,
+ol.is-style-list-plain {
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.is-style-list-plain:not(.has-background),
+ol.is-style-list-plain:not(.has-background) {
+	margin-left: 0;
+}
+ul.is-style-list-plain:not(.has-background) li,
+ol.is-style-list-plain:not(.has-background) li {
+	margin-left: 0;
+}
+
+ul.is-style-list-plain:not(.has-background) li ul li,
+ol.is-style-list-plain:not(.has-background) li ul li {
+	padding-left: var(--wp--preset--spacing--40);
+}
+
+/* Plain Centered */
+ul.is-style-list-plain-centered,
+ol.is-style-list-plain-centered {
+	list-style: none;
+	margin-left: 0;
+	text-align: center;
+}
+ul.is-style-list-plain-centered li,
+ol.is-style-list-plain-centered li {
+	margin-left: 0;
+}
+
+/*--------------------------------------------------------------
+# Paragraph
+--------------------------------------------------------------*/
+
+/* Alignwide */
+p.is-style-alignwide {
+	max-width: var(--wp--style--global--wide-size);
+	margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Arrow icon */
+p.is-style-arrow-icon-no-text {
+    font-size: 0; /* hide the text */
+}
+
+p.is-style-arrow-icon > a,
+p.is-style-arrow-icon-no-text > a {
+	display: block;
+	text-decoration: none !important;
+	outline: none !important;
+	text-align: center;
+	margin: var(--wp--preset--spacing--40) auto;
+}
+
+p.is-style-arrow-icon > a:hover, 
+p.is-style-arrow-icon > a:focus,
+p.is-style-arrow-icon > a:active,
+p.is-style-arrow-icon-no-text > a:hover, 
+p.is-style-arrow-icon-no-text > a:focus,
+p.is-style-arrow-icon-no-text > a:active {
+	opacity: 0.75;
+}
+
+p.is-style-arrow-icon > a:after,
+p.is-style-arrow-icon-no-text > a:after {
+	font-family: dashicons;
+	content: "\f347";
+	font-size: var(--wp--preset--font-size--larger);
+	line-height: 1;
+}
+p.is-style-arrow-icon > a:after {
+	white-space: pre-wrap; /* adds line break */
+}
+
+/* Underline links */
+p.is-style-link-underline a,
+p.is-style-link-underline a:active {
+	text-decoration: underline !important;
+}
+p.is-style-link-underline a:hover {
+	opacity: 0.8;
+}
+
+/* No Underline links */
+p.is-style-no-link-underline a,
+p.is-style-no-link-underline a:active {
+	text-decoration: none !important;
+}
+p.is-style-no-link-underline a:hover {
+	opacity: 0.8;
+}
+
+/*--------------------------------------------------------------
+# Separators
+--------------------------------------------------------------*/
+.wp-block-separator.is-style-thick {
+	border-width: 0 0 3px;
+	width: calc(10 * var(--wp--preset--spacing--40)) !important;
+}
+
+.wp-block-separator.is-style-thick-wide {
+	border-width: 0 0 3px; /*calc(1.25 * 1px);*/
+	width: 100% !important;
+}
+
+/*.wp-block-separator.is-style-clearfix {
+	border-width: 0;
+	margin: 0;
+}*/
+
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+
+/* Rounded borders */
+.wp-block-comments.is-style-rounded-border,
+.wp-block-comments-query-loop.is-style-rounded-border {
+	border: 1px solid var(--wp--custom--border--color);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--preset--spacing--40);
+}
+
+/*--------------------------------------------------------------
+# Excerpt Read More
+--------------------------------------------------------------*/
+.wp-block-post-excerpt.is-style-no-readmore > .wp-block-post-excerpt__more-text {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+# Latest Posts
+--------------------------------------------------------------*/
+
+/* Bullets */
+/*.wp-block-latest-posts.is-style-bullets,*/
+.wp-block-latest-posts.is-style-bullets.wp-block-latest-posts__list {
+	list-style: disc;
+	/*padding-left: var(--wp--preset--spacing--60);*/
+	padding-left: 2em;
+}
+
+.wp-block-latest-posts.is-style-bullets li {
+    list-style: disc;
+	overflow: visible;
+}
+
+/*--------------------------------------------------------------
+# Latest Comments
+--------------------------------------------------------------*/
+
+/* Default latest comments style to no bullets */
+.wp-block-latest-comments:not(.is-style-bullets) {
+	padding-left: 0;
+}
+
+/* Front-end Add bullets and padding */
+.wp-block-latest-comments.is-style-bullets {
+	/*box-sizing: border-box;*/
+	list-style: disc;
+}
+.wp-block-latest-comments.is-style-bullets:not(.has-avatars) {
+	padding-left: var(--wp--preset--spacing--60);
+}
+.wp-block-latest-comments.is-style-bullets li {
+    list-style: disc;
+}
+.wp-block-latest-comments.is-style-bullets.has-avatars .wp-block-latest-comments__comment {
+	list-style-position: inside;
+}
+
+/* Editor has nested lists, so push padding down to nested one */
+.is-root-container .wp-block-latest-comments.is-style-bullets {
+	padding-left: 0
+}
+.is-root-container .wp-block-latest-comments.is-style-bullets .wp-block-latest-comments:not(.has-avatars) {
+	padding-left: var(--wp--preset--spacing--60);
+}
+.is-root-container .wp-block-latest-comments.is-style-bullets .wp-block-latest-comments.has-avatars .wp-block-latest-comments__comment { 
+	list-style-position: inside;
+}
+
+/*--------------------------------------------------------------
+# Media & Text
+--------------------------------------------------------------*/
+
+.wp-block-media-text.is-style-media-text-border {
+	border: 3px solid var(--wp--custom--border--color);
+}
+
+/*--------------------------------------------------------------
+# Dashicons for theme templates
+--------------------------------------------------------------*/
+.wp-block-post-author.is-style-no-icon:before,
+.wp-block-post-date.is-style-no-icon:before,
+.wp-block-post-terms.is-style-no-icon:before,
+.wp-block-post-comments-count.is-style-no-icon:before {	
+	display: none;
+}

@@ -1,0 +1,627 @@
+/**
+ * Theme:	Flat Blocks
+ * File:	flat-blocks.css
+ * 
+ * The base stylesheet for the theme's css
+ *
+ * @package flat-blocks
+ * @since	1.0
+ */
+
+/*--------------------------------------------------------------
+# Html
+--------------------------------------------------------------*/
+
+/* 
+ * Default to contain borders and padding within blocks and prevent iOS from adjusting
+ * text sizes after orientation change. 
+ */
+html {
+	-webkit-text-size-adjust: 100%;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*--------------------------------------------------------------
+# Body
+--------------------------------------------------------------*/
+
+/*
+ * Font smoothing.
+ * This is a niche setting that will not be available via Global Styles.
+ * https://github.com/WordPress/gutenberg/issues/35934
+ */
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*--------------------------------------------------------------
+# Main Site Structure
+--------------------------------------------------------------*/
+/*
+ * Don't let anything be wider than our max width. This is so fullwidth images don't
+ * get so wide they lose resolution.
+ */
+.wp-site-blocks {
+	max-width: var(--wp--custom--layout--full-size);
+	margin-left: auto;
+    margin-right: auto;
+}
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+
+/* Use bold font-weight from theme.json */
+strong, 
+b {
+	font-weight: var(--wp--custom--typography--font-weight--bold);
+}
+
+/* Prevent code from breaking layout */
+code,
+pre {
+	overflow-x: auto;
+}
+
+/* Set lists with background to match other padding */
+ol.has-background,
+ul.has-background {
+    padding: var(--wp--preset--spacing--40);
+    list-style-position: inside;
+}
+
+/* If user specifies global heading font colors, don't override on colored backgrounds */
+.has-background .wp-block-heading:not(.has-text-color),
+.has-background h1:not(.has-text-color), 
+.has-background h2:not(.has-text-color),
+.has-background h3:not(.has-text-color),
+.has-background h4:not(.has-text-color),  
+.has-background h5:not(.has-text-color),	
+.has-background h6:not(.has-text-color) {
+	color: inherit;
+}
+
+/* Style the post title in the Block Editor */
+.edit-post-visual-editor__post-title-wrapper {
+	margin-top: var(--wp--preset--spacing--40);
+	margin-bottom: var(--wp--preset--spacing--40);
+	padding-left: var(--wp--style--root--padding-left, var(--wp--preset--spacing--50));
+	padding-right: var(--wp--style--root--padding-right, var(--wp--preset--spacing--50));
+}
+
+/*--------------------------------------------------------------
+# Links, Buttons, and Forms
+--------------------------------------------------------------*/
+/*
+ * Text and navigation link styles.
+ * Necessary until the following issue is resolved in Gutenberg:
+ * https://github.com/WordPress/gutenberg/issues/27075
+ */
+a,
+.wp-block-navigation a,
+.wp-block-navigation-submenu__toggle { 
+	cursor: pointer;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.3ch;
+}
+
+/* Style form fields */
+fieldset,
+textarea,
+input,
+select {
+	font-size: var(--wp--preset--font-size--normal);
+	font-weight: var(--wp--custom--typography--font-weight--normal);
+	line-height: 1.5;
+	border-radius: var(--wp--custom--border--radius);
+	text-shadow: none;
+}
+
+fieldset,
+textarea,
+input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="button"]):not([class="button"]):not(.wp-block-button__link) {
+    -webkit-appearance: none;
+	border: 1px solid var(--wp--preset--color--foreground);
+}
+
+select {
+	font-family: inherit;
+	color: var(--wp--preset--color--foreground);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: var(--wp--custom--font-weight--normal);
+	border: 1px solid var(--wp--preset--color--foreground);
+}
+
+/* Style focus outline */
+input:focus,
+textarea:focus {
+	outline: none !important;
+	box-shadow: 0 0 0 3px var(--wp--custom--outline--color);
+	transition: box-shadow 0.3s ease;
+}
+select:focus,
+select:focus-visible {
+	outline: var(--wp--custom--outline--color) 5px solid;
+	transition: outline 0.3s ease;
+}
+
+/* Style basic buttons to match block buttons. This is for older site content and / or
+ * plugins. Note the exclusions of any blocks or Tiny MCE buttons (which are the old
+ * editor prior to the new block editor).
+ */
+/*button:not([class*="wp-block-"]):not(.wp-element-button):not([id*=mce]):not([class*=mejs]):not([class*=swiper]):not([class*=wp-story]):not([class*=slick]):not(.components-button),*/
+input[type="button"],
+input[class="button"],
+input[type="file"]::file-selector-button {
+	color: var(--wp--preset--color--foreground-alt);
+	background-color: var(--wp--preset--color--primary);
+	border-width: 0;
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);
+	font-size: var(--wp--preset--font-size--normal);
+	font-weight: 400;
+	line-height: 1.5;
+	text-shadow: none;
+}
+input[type="file"] {
+	font-size: var(--wp--preset--font-size--small);
+	width: 100%;
+}
+
+/*
+ * Button hover styles.
+ * Necessary until the following issue is resolved in Gutenberg:
+ * https://github.com/WordPress/gutenberg/issues/27075
+ */
+button:hover,
+input[class="button"]:hover,
+input[type="file"]::file-selector-button:hover,
+.wp-block-search__button:hover,
+.wp-block-file .wp-block-file__button:hover,
+.wp-block-button__link:hover,
+.wp-block-navigation-submenu__toggle:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+/* Link hover styles */
+.has-text-color a:not(.wp-element-button, .wp-block-button, .wp-block-social-link-anchor):hover,
+.wp-block-navigation-item a:hover {
+	opacity: 0.8;
+}
+
+/*--------------------------------------------------------------
+# Basic Alignments
+--------------------------------------------------------------*/
+
+/* ADD limit cover image text to wide width */
+.wp-block-cover__inner-container {
+	max-width: var(--wp--style--global--wide-size); 
+	/*padding: var(--wp--preset--spacing--40);*/
+}
+
+/* FIX for center alignment */
+.is-layout-constrained > .aligncenter {
+	text-align: center;
+}
+
+/* ADD padding to align left and align right to honor wide width */
+.wp-site-blocks > .alignleft {
+	margin-right: var(--wp--preset--spacing--40);
+}
+body .is-layout-constrained > .alignleft {
+	padding-left: calc(0.5 * (100% - var(--wp--style--global--wide-size)));
+	margin-inline-end: var(--wp--preset--spacing--40);
+}
+.wp-site-blocks > .alignright {
+	margin-left: var(--wp--preset--spacing--40);
+}
+body .is-layout-constrained > .alignright {
+	padding-right: calc(0.5 * (100% - var(--wp--style--global--wide-size)));
+	margin-inline-start: var(--wp--preset--spacing--40);
+}
+
+/*--------------------------------------------------------------
+# Columns
+--------------------------------------------------------------*/
+/* FIX columns not having gap */
+.wp-block-columns {
+	gap: var(--wp--preset--spacing--40);
+}
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+
+/* Reduce vertical gap on nav menus for when they wrap */
+.wp-block-navigation {
+	row-gap: var(--wp--preset--spacing--20) !important;
+}
+
+/* REMOVE extra padding between to-level nav and its children */
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation__submenu-container {
+    padding-top: var(--wp--preset--spacing--20);
+}
+
+/* REMOVE extra padding on sub-menu drop-downs */
+.wp-block-navigation-submenu__toggle {
+  padding-left: 0;
+}
+
+/* REMOVE extra padding on sub-menus with backgrounds */
+ul.wp-block-navigation__submenu-container.has-background {
+	padding: 0;
+}
+
+/* Style the mobile nav menu open and close buttons */
+/*button.wp-block-navigation__responsive-container-open,
+.components-button.wp-block-navigation__responsive-container-open.wp-block-navigation__responsive-container-open,
+button.wp-block-navigation__responsive-container-close,
+.components-button.wp-block-navigation__responsive-container-close.wp-block-navigation__responsive-container-close  {
+	background-color: rgba(0, 0, 0, .05);
+	border: 1px solid var(--wp--preset--color--neutral-alt);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--preset--spacing--20);
+}*/
+
+/*
+ * Responsive menu container padding.
+ * This ensures the responsive container inherits the same
+ * spacing defined above. This behavior may be built into
+ * the Block Editor in the future.
+ */
+.wp-block-navigation__responsive-container.is-menu-open {
+	padding-top: var(--wp--preset--spacing--50);
+	padding-bottom: var(--wp--preset--spacing--50);
+	padding-right: var(--wp--style--root--padding-right, var(--wp--preset--spacing--50));
+	padding-left: var(--wp--style--root--padding-left, var(--wp--preset--spacing--50));
+}
+
+/*--------------------------------------------------------------
+# Images
+--------------------------------------------------------------*/
+
+/* Prevent images with hard-coded dimensions from breaking the layout. Note the figure
+ * line is for older block editor markup and the is-root-container is for the editor
+ * which adds an extra div between the image container (figure) and the image itself. 
+ */
+figure.wp-caption:not(.alignfull, .alignwide),
+figure.wp-caption:not(.alignfull, .alignwide) img {
+/*.is-root-container figure:not(.alignfull, .alignwide) > div,
+.is-root-container figure:not(.alignfull, .alignwide) > div > img {*/
+	max-width: min( 100%, var(--wp--style--global--content-size) ) !important;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* FIX caption color when on colored background */
+.wp-block-image figcaption {
+	color: inherit;
+}
+
+/* FIX rounded images when global image style has a border radius */
+.wp-block-image .is-style-rounded img, 
+.wp-block-image.is-style-circle-mask img, 
+.wp-block-image.is-style-rounded img {
+    border-radius: 9999px !important;
+}
+
+/*--------------------------------------------------------------
+# Media & Text
+--------------------------------------------------------------*/
+
+/* Match our padding */
+.wp-block-media-text .wp-block-media-text__content {
+	padding-left: var(--wp--preset--spacing--40);
+	padding-right: var(--wp--preset--spacing--40);
+}
+
+/*--------------------------------------------------------------
+# Quotes
+--------------------------------------------------------------*/
+
+/* OVERRIDE quote citation to be on new line */
+.wp-block-quote cite,
+.wp-block-pullquote cite {
+	display: inline-block;
+}
+
+/* OVERRIDE remove top margin because we use padding instead */
+.wp-block-pullquote p {
+	margin-top: 0; 
+}
+
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+
+/* Reduce top margin on "Leave a Reply" */
+.comment-reply-title {
+	margin-top: 0;
+}
+
+/* Hide empty comments so no extra vertical margin */
+#post-comments {
+	margin-bottom: var(--wp--preset--spacing--40);
+}
+#post-comments:empty {
+	display: none;
+	margin-top: 0;
+}
+
+/* Add padding to comment page numbers */
+.wp-block-comments-pagination .page-numbers:nth-last-child(n+2) {
+	padding-right: var(--wp--preset--spacing--30);
+}
+
+/* Add word "comment(s)" after post comment count. Note this is only available
+ * with the Gutenberg plugin. 
+ */
+.wp-block-post-comments-count:after {
+	content: " comment(s)";
+}
+
+/*--------------------------------------------------------------
+# Separator
+--------------------------------------------------------------*/
+
+/* Fix to center default (narrow) separator when user selects alignfull */
+.wp-block-separator.alignfull.is-style-default {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/*--------------------------------------------------------------
+# Featured Image
+--------------------------------------------------------------*/
+.wp-block-post-featured-image img {
+	padding: var(--wp--custom--border--radius)
+}
+
+
+/*--------------------------------------------------------------
+# Latest Posts
+--------------------------------------------------------------*/
+
+/* Set post thumbnails to match blog */
+.wp-block-latest-posts__featured-image img {
+	border-radius: var(--wp--custom--border--radius);
+	border: 1px solid var(--wp--custom--border--color);
+	padding: var(--wp--custom--border--radius);
+}
+.wp-block-latest-posts__featured-image.aligncenter {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+/* Remove extra bottom padding and make full width on mobile */
+.wp-block-latest-posts.is-grid li {
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Latest Comments
+--------------------------------------------------------------*/
+
+/* Set default latest comments to match latest posts, which has no bullets or indent */
+.wp-block-latest-comments {
+	list-style: none;
+}
+
+.wp-block-latest-comments__comment {
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Query Pagination
+--------------------------------------------------------------*/
+.wp-block-query-pagination-numbers .page-numbers:nth-last-child(n+2) {
+	padding-right: var(--wp--preset--spacing--30);
+}
+
+/*--------------------------------------------------------------
+# Margin Overrides (Vertical spacing)
+--------------------------------------------------------------*/
+
+/* Core Wordpress controls vertical spacing by adding the gap setting as top 
+ * margin between all blocks on the site. However, certain things like template
+ * parts get this too and we want the theme and users to be able to control it, 
+ * so push this down to the block level. Also don't default to having padding. */
+ 
+ /* Remove top margin and padding from the containers */
+.wp-site-blocks header,
+.wp-site-blocks main,
+.wp-site-blocks footer,
+.wp-site-blocks .wp-block-template-part,
+.wp-site-blocks .wp-block-post-content {
+	margin-block-start: 0 !important;
+}
+ 
+ /* Add top margin to the container's first block and then between subsequent blocks */
+.wp-site-blocks main > *:first-child:not(.wp-block-template-part, .wp-block-post-content, .wp-block-cover,  .wp-block-query, header, footer, nav),
+/*.wp-site-blocks .wp-block-template-part > *:first-child:not(.wp-block-template-part, .wp-block-post-content, .wp-block-cover, .wp-block-query, main, header, footer, nav),
+.wp-site-blocks .wp-block-template-part > * + *:not(.wp-block-template-part, .wp-block-query, main, header, footer, nav),*/
+body .is-layout-constrained > * + .wp-block-template-part > *:first-child:not(.wp-block-template-part, .wp-block-post-content, .wp-block-cover, .wp-block-query, main, header, footer, nav),
+body .is-layout-constrained .wp-block-template-part > * + *:not(.wp-block-template-part, .wp-block-post-content, .wp-block-cover, .wp-block-query, main, header, footer, nav),
+.wp-site-blocks .wp-block-query > *:first-child:not(.wp-block-cover),
+.wp-site-blocks .wp-block-post-content > *:first-child:not(.wp-block-cover),
+.is-root-container > *:first-child:not(.wp-block-template-part, .wp-block-cover, .wp-block-query) {
+ 	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+/* But don't add top margin to a template part within a column. e.g. Footers. */
+.wp-site-blocks .wp-block-column > .wp-block-template-part > *:first-child {
+	margin-block-start: 0;
+}
+
+/* Also add bottom margin on the last block for convenience */
+.wp-site-blocks .wp-block-query > *:last-child,
+.wp-site-blocks .wp-block-post-content > *:last-child {
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+/* But don't add bottom margin to a template part within a column. e.g. Footers. */
+.wp-site-blocks .wp-block-column > .wp-block-template-part > *:last-child {
+	margin-block-end: 0;
+}
+
+/* Remove bottom margin on Category and Tag descriptions */
+.wp-block-term-description p {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+/*--------------------------------------------------------------
+# Padding Overrides (Horizontal and vertical spacing)
+--------------------------------------------------------------*/
+
+/* 
+ * Note: Padding for colored backgrounds on groups and columns is in theme.json 
+ */
+
+/* For convenience, remove padding from inner containers */
+.wp-site-blocks main,
+.wp-site-blocks .wp-block-template-part,
+.wp-site-blocks .wp-block-post-content {
+	padding: 0;
+}
+
+/* FIX to add back horizontal padding */
+.has-global-padding {
+    padding-left: var(--wp--style--root--padding-left, var(--wp--preset--spacing--50)) !important;
+    padding-right: var(--wp--style--root--padding-right, var(--wp--preset--spacing--50)) !important;
+}
+
+.has-global-padding > .alignfull:not(.wp-block-post-content, .wp-block-image, .wp-block-columns, .wp-block-buttons),
+.has-global-padding.alignfull:not(wp-block-post-content, .wp-block-image, .wp-block-columns, .wp-block-buttons),
+.is-root-container .has-global-padding.has-background {
+    padding-left: var(--wp--style--root--padding-left, var(--wp--preset--spacing--50)) !important;
+    padding-right: var(--wp--style--root--padding-right, var(--wp--preset--spacing--50)) !important;
+}
+
+/* FIX alignfull in WordPress.org theme preview */
+.has-global-padding > #wporg-pattern-preview > div > .alignfull {
+	margin-right: calc(var(--wp--style--root--padding-right, var(--wp--preset--spacing--50)) * -1);
+	margin-left: calc(var(--wp--style--root--padding-left, var(--wp--preset--spacing--50)) * -1);
+}
+
+/* But REMOVE duplicate padding */
+.wp-block-group > .wp-block-group:not(.has-background) {
+	padding: 0;
+}
+
+.has-global-padding :where(.has-global-padding):not(.has-background) {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+/* And OVERRIDE horizontal padding on mobile */
+/* Breakpoint of 601 is what is hard-coded in WordPress v6.0+ to collapse media & text */
+@media only screen and (max-width: 601px) {
+	
+	.wp-block-media-text.is-stacked-on-mobile .wp-block-media-text__content {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	
+	.wp-block-latest-posts.is-grid li {
+        margin-right: 0;
+    }
+
+}
+
+/* Breakpoint of 781 is what is hard-coded in WordPress v6.0+ to collapse columns */
+@media only screen and (max-width: 781px) {
+
+	/* If no global padding, then set colored paragraphs and columns like colored groups */
+	p.has-background,
+	.wp-block-columns.has-background,
+	.wp-block-column.has-background {
+		padding-left: var(--wp--preset--spacing--60);
+		padding-right: var(--wp--preset--spacing--60);
+	}
+
+	/* If global padding, then OVERRIDE horizontal padding */
+	.has-global-padding p.has-background,
+	.has-global-padding .wp-block-columns.has-background,
+	.has-global-padding .wp-block-column.has-background {
+		padding-left: var(--wp--style--root--padding-left, var(--wp--preset--spacing--50)) !important;
+		padding-right: var(--wp--style--root--padding-right, var(--wp--preset--spacing--50)) !important;
+	}
+		
+}
+
+/*--------------------------------------------------------------
+# Clearfix (Clear floats)
+--------------------------------------------------------------*/
+/* 
+ * For now, this must be added manually in the Advanced section of the block settings.
+ * Be carefull as this will mess up fixed headers, Row Groups (flex boxes), etc.
+ */
+.is-style-clearfix:not(.is-layout-flex):after {
+/*.wp-block-post-content .wp-block-group:not(.is-layout-flex):after {*/
+	content: "";
+	clear: both;
+	display: table;
+}
+
+/*--------------------------------------------------------------
+# Dashicons for theme templates
+--------------------------------------------------------------*/
+
+/* Don't let dashicons force width and height. Let it come from the font size. */
+.wp-site-blocks .dashicons {
+	width: auto;
+	height: auto;
+	font-weight: var(--wp--custom--typography--font-weight--normal);
+}
+.wp-site-blocks .dashicons:before {
+	display: inline-block;
+}
+
+/* Add dashicons to various template tags */
+.wp-block-post-author:before,
+.wp-block-post-date:before,
+.wp-block-post-terms:before,
+.wp-block-post-comments-count:before {	
+	font-family: dashicons;
+	padding-right: var(--wp--preset--spacing--20);
+}
+
+.rtl .wp-block-post-author:before,
+.rtl .wp-block-post-date:before,
+.rtl .wp-block-post-terms:before,
+.rtl .wp-block-post-terms:before,
+.rtl .wp-block-post-comments-count:before {
+	padding-right: 0;
+	padding-left: var(--wp--preset--spacing--20);
+}
+
+/* dashicons-admin-users */
+.wp-block-post-author:before {
+	content: "\f110";
+}
+
+/* dashicons-calendar-alt */
+.wp-block-post-date:before {
+	content: "\f508";
+}
+
+/* dashicons-tag */
+.wp-block-post-terms.taxonomy-category:before {
+	content: "\f318";
+}
+
+/* dashicons-category */
+.wp-block-post-terms.taxonomy-post_tag:before {
+	content: "\f323";
+}
+
+/* dashicons-admin-comments for comments count */
+.wp-block-post-comments-count:before {
+	content: "\f101";
+}
